@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Flip Flip</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="flashcards-app">
+  <div>
+    <input v-model = "questionInput" placeholder = "Question"/>
+    <input v-model = "answerInput" placeholder = "Answer"/><br><br>
+    
+    <input type = "radio" id = "one" value = "history" v-model = "categoryInput">
+    <label for = "one">History</label><br>
+     <input type = "radio" id = "two" value = "math" v-model = "categoryInput">
+    <label for = "one">Math</label><br>
+     <input type = "radio" id = "three" value = "science" v-model = "categoryInput">
+    <label for = "one">Science</label><br><br>
+    <button v-on:click = "addCard">Submit</button>
+  </div>
+  
+  <div class="card" v-for = "card in cards" v-on:click = "card.flipped = !card.flipped">
+    <div class="top" v-bind:class = "card.category">
+    </div>
+    <div class="side1" v-bind:class = {hide:card.flipped}>
+      <h1>{{card.question}}</h1>
+    </div>
+<!--     In your template, remove the 'hide' class from the side1 and side2 elements. 'hide' class should be conditionally rendered through the 'flipped' value in the card -->
+    <div class="side2" v-bind:class = {hide:!card.flipped}>
+      <h1>{{card.answer}}</h1>
+    </div>
+  </div>
+  
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
